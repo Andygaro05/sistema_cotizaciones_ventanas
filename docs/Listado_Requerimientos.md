@@ -5,7 +5,7 @@ Este documento especifica los requerimientos funcionales para el sistema de coti
 ## Registro de Entidades
 
 - El sistema debe permitir el registro de un estilo de ventana con los siguientes atributos: tipo de ventana (O, XO, OXXO, OXO) junto con sus dimensiones (ancho y alto).
-- El sistema debe permitir el registro de una nave con los atributos: tipo de nave (O o X) junto con sus mezclas, dimensiones (ancho y alto), tipo de vidrio y su acabado y si aplica  esmerilado.
+- El sistema debe permitir el registro de una nave con los atributos: tipo de nave (O o X) junto con sus mezclas, dimensiones (ancho y alto), tipo de vidrio, su acabado y si aplica  esmerilado.
 - El sistema debe permitir el registro de un tipo de vidrio basado en los atributos (transparente, bronce, azul) y su precio respectivo por cm².
 - El sistema debe permitir el registro de un acabado de aluminio con los atributos (pulido, lacado brillante, lacado mate, anodizado) y su precio respectivo por metro lineal.
 - El sistema debe permitir el registro de elementos adicionales con atributos: esquinas (precio por unidad), chapas (precio por unidad).
@@ -34,3 +34,8 @@ Este documento especifica los requerimientos funcionales para el sistema de coti
 - El sistema debe garantizar que el vidrio sea siempre 1.5 cm más pequeño que la nave en cada lado.
 - El sistema debe asegurar que el descuento solo se aplique para más de 100 ventanas del mismo diseño.
 
+## Mejoras propias
+- El sistema permite multiples estilos de ventanas en una unica cotización
+- El sistema genera una "factura digital" de la cotización
+- El cliente otorga una dirección para la entrega de las ventanas
+- El sistema calcula el costo independiente de vidrio y aluminio
