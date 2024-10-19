@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factura</title>
+</head>
+<body>
+    <h1>Factura</h1>
+    <p>Número de Cotización: {{ cotizacion.numero }}</p>
+    <p>Cliente: {{ cotizacion.cliente.nombre }}</p>
+    <p>Empresa: {{ cotizacion.cliente.empresa }}</p>
+    <p>Fecha: {{ cotizacion.fecha }}</p>
+
+    <h2>Detalle de Ventanas</h2>
+    <ul>
+        {% for ventana in cotizacion.ventanas %}
+        <li>Estilo: {{ ventana.estilo }}, Ancho: {{ ventana.ancho }}, Alto: {{ ventana.alto }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Total</h2>
+    <p>Total General (sin descuento): ${{ total + descuento }}</p>
+    <p>Descuento (10%): ${{ descuento }}</p>
+    <p>Total a pagar: ${{ total }}</p>
+
+    <p>Su pedido será enviado a: {{ cotizacion.cliente.direccion }}</p>
+</body>
+</html>

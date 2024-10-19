@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cotización</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Crear Cotización</h1>
+        <form action="{{ url_for('crear_cotizacion') }}" method="POST">
+            <div class="form-group">
+                <label for="nombre_cliente">Nombre del Cliente:</label>
+                <input type="text" id="nombre_cliente" name="nombre_cliente" required>
+            </div>
+
+            <div class="form-group">
+                <label for="empresa_cliente">Empresa del Cliente:</label>
+                <input type="text" id="empresa_cliente" name="empresa_cliente" required>
+            </div>
+
+            <div class="form-group">
+                <label for="direccion">Dirección:</label>
+                <input type="text" id="direccion" name="direccion" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tipos_ventanas">Número de tipos de ventanas:</label>
+                <input type="number" id="tipos_ventanas" name="tipos_ventanas" min="1" max="5" required>
+            </div>
+
+            <div id="ventanas">
+                <!-- Dynamic fields for ventana details will be here -->
+            </div>
+
+            <button type="submit" class="btn">Generar Cotización</button>
+        </form>
+    </div>
+
+    <script>
+        // JavaScript to dynamically add form fields based on "tipos_ventanas"
+        document.getElementById('tipos_ventanas').addEventListener('input', function() {
+            const count = this.value;
+            const container = document.getElementById('ventanas');
+            container.innerHTML = '';  // Clear the form
+
+            for (let i = 0; i < count; i++) {
+                container.innerHTML += `
+                    <div class="window-section">
+                        <h3>Ventana ${i + 1}</h3>
+
+                        <div class="form-group">
+                            <label for="estilo_${i}">Estilo:</label>
+                            <select name="estilo_${i}" required>
+                                <option value="O">O</option>
+                                <option value="XO">XO</option>
+                                <option value="OXO">OXO</option>
+                                <option value="OXXO">OXXO</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ancho_${i}">Ancho (cm):</label>
+                            <input type="number" name="ancho_${i}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="alto_${i}">Alto (cm):</label>
+                            <input type="number" name="alto_${i}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="acabado_${i}">Acabado:</label>
+                            <select name="acabado_${i}" required>
+                                <option value="Pulido">Pulido</option>
+                                <option value="Lacado Brillante">Lacado Brillante</option>
+                                <option value="Lacado Mate">Lacado Mate</option>
+                                <option value="Anodizado">Anodizado</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tipo_vidrio_${i}">Tipo de Vidrio:</label>
+                            <select name="tipo_vidrio_${i}" required>
+                                <option value="Transparente">Transparente</option>
+                                <option value="Bronce">Bronce</option>
+                                <option value="Azul">Azul</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cantidad_ventanas_${i}">Cantidad:</label>
+                            <input type="number" name="cantidad_ventanas_${i}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="esmerilado_${i}">Esmerilado:</label>
+                            <input type="checkbox" name="esmerilado_${i}">
+                        </div>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
