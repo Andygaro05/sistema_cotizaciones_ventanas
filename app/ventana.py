@@ -1,4 +1,3 @@
-from cotizacion import *
 class Ventana:
     def __init__(self, ancho:float, alto:float, estilo:str, acabado_aluminio:str, tipo_vidrio:str, esmerilado=False):
         self.ancho = ancho
