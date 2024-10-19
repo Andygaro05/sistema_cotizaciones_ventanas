@@ -18,7 +18,6 @@ def crear_cotizacion():
     empresa_cliente = input("Ingrese el nombre de la empresa: ")
     direccion = input("Ingrese la dirección de la empresa: ")
     tipos_ventanas = int(input("Ingrese cuantos estilos diferentes de ventana desea: "))
-    cantidad_ventanas = [0] * tipos_ventanas
     for i in range(tipos_ventanas):
         estilo = input("Ingrese el estilo de la ventana (O, XO, OXXO, OXO): ")
         ancho = float(input("Ingrese el ancho de la ventana (cm): "))
@@ -26,18 +25,16 @@ def crear_cotizacion():
         acabado = input("Ingrese el tipo de acabado (Pulido, Lacado Brillante, Lacado Mate, Anodizado): ")
         tipo_vidrio = input("Ingrese el tipo de vidrio (Transparente, Bronce, Azul): ")
         esmerilado = input("Esmerilado (S/N)? ").lower() == 's'
-        cantidad_ventanas[i] = int(input(f"Ingrese cuantas ventanas quiere con este estilo: "))
+        cantidad_ventanas = int(input(f"Ingrese cuantas ventanas quiere con este estilo: "))
 
         ventana = Ventana(ancho, alto, estilo, acabado,tipo_vidrio, esmerilado)
-        ventanas.append(ventana)
+        for _ in range(cantidad_ventanas):
+            ventanas.append(ventana)
 
     cliente = Cliente(nombre_cliente, empresa_cliente, direccion)
     cotizacion = Cotizacion(cliente, ventanas, fecha)
     total = cotizacion.calcular_total()
-    print(f"Nombre: {nombre_cliente}")
-    print(f"Empresa: {empresa_cliente}")
-    print(f"El costo total de la cotización es: ${total:.2f}")
-
+    cotizacion.imprimir_factura()
 
 def main():
     while True:

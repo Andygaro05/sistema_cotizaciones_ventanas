@@ -33,9 +33,3 @@ Este documento especifica los requerimientos funcionales para el sistema de coti
 - El sistema debe verificar que las dimensiones de las naves sean coherentes con el ancho y alto de la ventana.
 - El sistema debe garantizar que el vidrio sea siempre 1.5 cm más pequeño que la nave en cada lado.
 - El sistema debe asegurar que el descuento solo se aplique para más de 100 ventanas del mismo diseño.
-
-## Mejoras propias
-- El sistema permite multiples estilos de ventanas en una unica cotización
-- El sistema genera una "factura digital" de la cotización
-- El cliente otorga una dirección para la entrega de las ventanas
-- El sistema calcula el costo independiente de vidrio y aluminio
