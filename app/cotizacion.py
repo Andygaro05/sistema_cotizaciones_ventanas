@@ -1,7 +1,11 @@
+from rich import print, table
+from rich.console import Console
+from datetime import datetime
+
 class Cotizacion:
     numero_cotizacion = 1
 
-    def __init__(self, cliente:object, ventanas:list[object], fecha:str):
+    def __init__(self, cliente, ventanas, fecha):
         self.cliente = cliente
         self.ventanas = ventanas
         self.fecha = fecha
@@ -18,14 +22,17 @@ class Cotizacion:
         return total, descuento
 
     def imprimir_factura(self):
-        print("-" * 30)
-        print("COTIZACIÓN")
-        print("-" * 30)
-        print(f"Número de Cotización: {self.numero}")
-        print(f"Cliente: {self.cliente.nombre}")
-        print(f"Empresa: {self.cliente.empresa}")
-        print(f"Fecha: {self.fecha}")
-        print()
+
+        # Crear una tabla para la factura
+        factura_table = table.Table(title="COTIZACIÓN", show_header=True, header_style="bold magenta")
+        factura_table.add_column("Detalle", style="bold blue")
+        factura_table.add_column("Valor", style="green")
+
+        # Agregar filas a la tabla
+        factura_table.add_row("Número de Cotización:", str(self.numero))
+        factura_table.add_row("Cliente:", self.cliente.nombre)
+        factura_table.add_column("Empresa:", self.cliente.empresa)
+        factura_table.add_row("Fecha:", self.fecha)
 
         # Agrupar las ventanas por estilo y calcular el total por estilo
         ventanas_por_estilo = {}

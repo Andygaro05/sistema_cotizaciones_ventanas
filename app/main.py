@@ -1,3 +1,7 @@
+from rich import print
+from rich.console import Console
+from rich.table import Table
+from rich.prompt import Prompt 
 from datetime import datetime
 from ventana import Ventana
 from cotizacion import Cotizacion
@@ -5,8 +9,13 @@ from cliente import Cliente
 
 
 def mostrar_menu():
-    print("1. Crear cotización")
-    print("2. Salir")
+    console = Console()
+    table = Table(title="Menú Principal")
+    table.add_column("Opción")
+    table.add_column("Descripción")
+    table.add_row("1", "Crear cotización")
+    table.add_row("2", "Salir")
+    console.print(table)
 
 
 def crear_cotizacion():
@@ -14,9 +23,9 @@ def crear_cotizacion():
     # Fecha con hora
     fecha = datetime.now()
     fecha = fecha.strftime("%y/%m/%d %H:%M:%S %p")
-    nombre_cliente = input("Ingrese el nombre del cliente: ")
-    empresa_cliente = input("Ingrese el nombre de la empresa: ")
-    direccion = input("Ingrese la dirección de la empresa: ")
+    nombre_cliente = Prompt.ask("[bold green]Ingrese el nombre del cliente[/bold green]")
+    empresa_cliente = Prompt.ask("[bold green]Ingrese el nombre de la empresa[/bold green]")
+    direccion = Prompt.ask("[bold green]Ingrese la dirección de la empresa[/bold green]")
     tipos_ventanas = int(input("Ingrese cuantos estilos diferentes de ventana desea: "))
     for i in range(tipos_ventanas):
         estilo = input("Ingrese el estilo de la ventana (O, XO, OXXO, OXO): ")

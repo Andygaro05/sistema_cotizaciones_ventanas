@@ -25,7 +25,6 @@ Este documento especifica los requerimientos funcionales para el sistema de coti
 
 - El sistema debe permitir asociar múltiples estilos de ventanas a un cliente.
 - El sistema debe relacionar naves con ventanas, calculando automáticamente sus dimensiones basadas en el ancho y alto de la ventana completa.
-- El sistema debe asociar un tipo de vidrio y un acabado a cada nave.
 - El sistema debe calcular automáticamente el número de esquinas y chapas necesarias para cada ventana según el tipo y cantidad de naves.
 
 ## Validaciones
