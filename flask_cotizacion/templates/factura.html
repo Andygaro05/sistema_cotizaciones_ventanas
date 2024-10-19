@@ -4,26 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Factura</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Factura</h1>
-    <p>Número de Cotización: {{ cotizacion.numero }}</p>
-    <p>Cliente: {{ cotizacion.cliente.nombre }}</p>
-    <p>Empresa: {{ cotizacion.cliente.empresa }}</p>
-    <p>Fecha: {{ cotizacion.fecha }}</p>
+    <div class="container">
+        <h1>Factura</h1>
 
-    <h2>Detalle de Ventanas</h2>
-    <ul>
-        {% for ventana in cotizacion.ventanas %}
-        <li>Estilo: {{ ventana.estilo }}, Ancho: {{ ventana.ancho }}, Alto: {{ ventana.alto }}</li>
-        {% endfor %}
-    </ul>
+        <div class="factura-details">
+            <p><strong>Número de Cotización:</strong> {{ cotizacion.numero }}</p>
+            <p><strong>Cliente:</strong> {{ cotizacion.cliente.nombre }}</p>
+            <p><strong>Empresa:</strong> {{ cotizacion.cliente.empresa }}</p>
+            <p><strong>Fecha:</strong> {{ cotizacion.fecha }}</p>
+        </div>
 
-    <h2>Total</h2>
-    <p>Total General (sin descuento): ${{ total + descuento }}</p>
-    <p>Descuento (10%): ${{ descuento }}</p>
-    <p>Total a pagar: ${{ total }}</p>
+        <h2>Detalle de Ventanas</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Estilo</th>
+                    <th>Ancho (cm)</th>
+                    <th>Alto (cm)</th>
+                    <th>Acabado</th>
+                    <th>Tipo de Vidrio</th>
+                    <th>Cantidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ventana in cotizacion.ventanas %}
+                <tr>
+                    <td>{{ ventana.estilo }}</td>
+                    <td>{{ ventana.ancho }}</td>
+                    <td>{{ ventana.alto }}</td>
+                    <td>{{ ventana.acabado_aluminio }}</td>
+                    <td>{{ ventana.tipo_vidrio }}</td>
+                    <td>1</td> <!-- Assuming each row represents one window -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
-    <p>Su pedido será enviado a: {{ cotizacion.cliente.direccion }}</p>
+        <div class="total-section">
+            <h2>Total</h2>
+            <table class="table-total">
+                <tbody>
+                    <tr>
+                        <td>Total General (sin descuento):</td>
+                        <td>${{ total + descuento }}</td>
+                    </tr>
+                    <tr>
+                        <td>Descuento (10%):</td>
+                        <td>${{ descuento }}</td>
+                    </tr>
+                    <tr class="final-total">
+                        <td><strong>Total a pagar:</strong></td>
+                        <td><strong>${{ total }}</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p class="delivery-info">Su pedido será enviado a: <strong>{{ cotizacion.cliente.direccion }}</strong></p>
+    </div>
 </body>
 </html>
